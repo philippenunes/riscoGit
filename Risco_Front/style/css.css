@@ -1,0 +1,144 @@
+  div.label{
+    background-color: rgba(40, 40, 40, 0.87);
+    margin:20px;
+    padding: 10px;
+    padding-left: 20px;
+  }
+  
+  html{
+    background-color: rgb(18,18,18);
+    color: rgba(36, 240, 240, 0.87);
+  }
+  input[type=text]{
+    margin-right: 10px;
+    width: 15%;
+    background-color: rgb(18,18,18);
+    color: rgba(36, 240, 240, 0.87);
+    padding: 5px 10px;
+    display: inline-block;
+    border: 2px solid rgba(207, 48, 247, 0.87);
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  select{
+    margin-right: 10px;
+    width: 15%;
+    background-color: rgb(18,18,18);
+    color: rgba(36, 240, 240, 0.87);
+    padding: 5px 10px;
+    display: inline-block;
+    border: 2px solid rgba(207, 48, 247, 0.87);
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus {
+      outline: none;
+  }
+  
+  input[type=submit] {
+    background-color: #121212;
+    color: #24F0F0;
+    padding: 5px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  input[type=button]{
+    background-color: rgba(80, 80, 80, 0.87);
+    color: #24F0F0;
+    padding: 5px 20px;
+    margin: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  input[type=submit],input[type=button]:hover {
+    background-color: #45a049;
+    color: black;
+  }
+
+
+  
+
+.topnav {
+  width: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: -10px;
+  margin-right: -30px;
+  background-color: rgba(40, 40, 40, 0.87);
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #24F0F0;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #45a049;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+  
+
+
+/*================================= Modal Style ==============   */
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,200); /* Fallback color */
+  background-color: rgba(0,0,200,0.1); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: rgba(40, 40, 40, 1);
+  margin: 30% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 5px solid rgba(34, 34, 34, 0.918);
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
