@@ -2,10 +2,13 @@ package camada.entidade;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -30,8 +33,8 @@ public class Empresa extends Dao {
 	@Column(name = "nVarDescricao", nullable = false)
 	private String descricao;
 	
-//	@OneToMany(mappedBy = "empresa", targetEntity = Organograma.class, fetch = FetchType.LAZY)
-//	private Set<Organograma> organogramas;
+	@OneToMany(mappedBy = "empresa", targetEntity = Organograma.class, fetch = FetchType.LAZY)
+	private Set<Organograma> organogramas;
 	
 	public void salvar() {
 		

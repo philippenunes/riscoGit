@@ -1,9 +1,12 @@
 package camada.entidade;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -44,22 +47,56 @@ public class Funcionario extends Dao{
 	private Set<Organograma> organogramas;
 	
 	
+	
+	
 	public void salvar() {
 		
 		iniciarOperacao();
 		
 		//workaround para tratar recursividade da relacao bi-lateral
-		for(Organograma orga : organogramas) {
-			
-			orga.setFuncionarios(null);
-		
-		}	
+		if(organogramas != null) {
+			for(Organograma orga : organogramas) {
+				orga.setFuncionarios(null);
+			}	
+		}
 		
 		session.save(this);
 		
 		finalizarOperacao();
 		
 	} 
+	
+	public void deletar(){	
+		
+		iniciarOperacao();
+		Funcionario funcionario = (Funcionario)session.load(Funcionario.class, this.id);
+		session.delete(funcionario);
+		
+		finalizarOperacao();
+		
+	}
+	
+	public List<Funcionario> findAll(){
+		
+		iniciarOperacao();
+		
+		List<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
+		listaFuncionarios = session.createQuery("SELECT a FROM Funcionario a", Funcionario.class).getResultList();
+		
+		finalizarOperacao();
+		
+		return listaFuncionarios;
+	}
+
+	public void atualizar() {
+		
+		iniciarOperacao();
+		
+		session.update(this);
+		
+		finalizarOperacao();
+		
+	}
 	
 	
 }

@@ -1,6 +1,7 @@
 package camada.entidade;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -56,7 +57,7 @@ public class Organograma extends Dao{
 		
 	} 
 	
-	public Organograma find(){
+	public List<Organograma> find(){
 			
 		iniciarOperacao();
 		
@@ -66,5 +67,36 @@ public class Organograma extends Dao{
 		finalizarOperacao();
 		
 		return listaOrganogramas;
+	}
+
+	public List<Organograma> findOrganogramaPorEmpresa(Empresa empresa) {
+
+		iniciarOperacao();
+		
+		List<Organograma> listaOrganograma = session.createQuery("SELECT a FROM Organograma a Where a.empresa ='"+ this.empresa+"'", Organograma.class).getResultList();
+		
+		finalizarOperacao();
+		
+		return listaOrganograma;
+	}
+
+	public void deletar() {
+		
+		iniciarOperacao();
+		Organograma organograma = (Organograma)session.load(Organograma.class, this.id);
+		session.delete(organograma);
+		
+		finalizarOperacao();
+		
+	}
+
+	public void atualizar() {
+		
+		iniciarOperacao();
+		
+		session.update(this);
+		
+		finalizarOperacao();
+		
 	} 
 }
