@@ -1,0 +1,12 @@
+<div>
+  <table style="width:100%" *ngIf="empresas$ | async as empresas">
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+    </tr>
+    <tr *ngFor="let empresa of empresas">
+      <td>{{ empresa.nome }}</td>
+      <td>{{ empresa.descricao }}</td>
+    </tr>
+  </table>
+</div>
