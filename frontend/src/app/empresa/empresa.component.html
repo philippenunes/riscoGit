@@ -1,18 +1,5 @@
-<button (click)="onList()">Listar</button>
-<button [routerLink]="['cadastro']">Cadastrar</button>
+<button class="button" [routerLink]="['lista']">Listar</button>
+<button class="button" [routerLink]="['cadastro']">Cadastrar</button>
 
-<div>
-  <table style="width:100%" *ngIf="empresas$ | async as empresas">
-    <tr>
-      <th>Nome</th>
-      <th>Descrição</th>
-    </tr>
-    <tr *ngFor="let empresa of empresas">
-      <td>{{ empresa.nome }}</td>
-      <td>{{ empresa.descricao }}</td>
-    </tr>
-  </table>
-</div>
-{{whiteSpace}}
 <router-outlet></router-outlet>
 

@@ -1,3 +1,83 @@
-<h1>Risco Compilance!</h1>
+<!-- Spinner global -->
+<ngx-spinner
+size = "default"
+type = "ball-newton-cradle"
+[fullScreen] = "true"
+>
+</ngx-spinner>
+<!-- Fim Spinner global -->
 
-<router-outlet></router-outlet>
+<section class="hero is-light is-bold is-fullheight">
+
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <!-- <a class="navbar-item">
+            <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo">
+          </a> -->
+          <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenuHeroB" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item" [routerLink]="['home']">
+              Home
+            </a>
+            <a class="navbar-item" [routerLink]="['empresas']">
+              Empresas
+            </a>
+            <a class="navbar-item">
+              Sobre
+            </a>
+            <span class="navbar-item">
+              <a class="button is-info is-inverted">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Login</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="hero-body">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <div class="hero-footv">
+    <!-- <nav class="tabs is-boxed is-fullwidth">
+      <div class="container">
+        <ul>
+          <li class="is-active">
+            <a>Overview</a>
+          </li>
+          <li>
+            <a>Modifiers</a>
+          </li>
+          <li>
+            <a>Grid</a>
+          </li>
+          <li>
+            <a>Elements</a>
+          </li>
+          <li>
+            <a>Components</a>
+          </li>
+          <li>
+            <a>Layout</a>
+          </li>
+        </ul>
+      </div>
+    </nav> -->
+  </div>
+</section>
+

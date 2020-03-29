@@ -9,8 +9,8 @@
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
         <property name="connection.url">jdbc:sqlserver://localhost:1433;databaseName=Risk_Compliance</property>
-        <property name="connection.username">vitor</property>
-        <property name="connection.password">senha123</property>
+        <property name="connection.username">postgres</property>
+<!--        <property name="connection.password">senha123</property>-->
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>

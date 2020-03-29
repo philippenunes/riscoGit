@@ -21,10 +21,11 @@ export class EmpresaService {
       );
   }
 
-  create(empresa) {
-      return this.http.post(this.API, empresa)
-      .pipe(
-        tap(console.log)
-    );
+  create(form) {
+    return this.http.post(this.API, form.value)
+        .pipe(
+          delay(3000),
+          tap(console.log)
+        )
   }
 }
