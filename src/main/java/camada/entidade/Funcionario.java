@@ -1,20 +1,14 @@
 package camada.entidade;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import camada.dao.Dao;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +16,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "tbFuncionario")
-public class Funcionario extends Dao{
+public class Funcionario extends Dao {
 	
 	@Id
 	@PrimaryKeyJoinColumn
@@ -37,35 +31,24 @@ public class Funcionario extends Dao{
 	
 	@Column(name = "nVarDescricao", nullable = false)
 	private String descricao;
-	
-	@ManyToMany
-	@JoinTable(name = "tbFuncionarioOrganograma",
-            joinColumns={@JoinColumn(name="id_nVarFuncionario",  
-            referencedColumnName="id_nVarFuncionario")},  
-            inverseJoinColumns={@JoinColumn(name="id_nVarOrganograma",   
-            referencedColumnName="id_nVarOrganograma")})
+
+	@Column(name = "id_nvarEmpresa", nullable = false)
+	private String idEmpresa;
+
+	@Column(name = "id_nvarUsuario")
+	private String userId;
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "funcionarios", fetch = FetchType.EAGER)
 	private Set<Organograma> organogramas;
-	
-	
-	
-	
+
 	public void salvar() {
-		
 		iniciarOperacao();
-		
-		//workaround para tratar recursividade da relacao bi-lateral
-		if(organogramas != null) {
-			for(Organograma orga : organogramas) {
-				orga.setFuncionarios(null);
-			}	
-		}
-		
+		this.setId(getSequence(this.descricao));
 		session.save(this);
-		
 		finalizarOperacao();
-		
-	} 
-	
+	}
+
 	public void deletar(){	
 		
 		iniciarOperacao();
@@ -97,6 +80,4 @@ public class Funcionario extends Dao{
 		finalizarOperacao();
 		
 	}
-	
-	
 }
