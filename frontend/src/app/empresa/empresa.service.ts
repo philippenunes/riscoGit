@@ -17,15 +17,30 @@ export class EmpresaService {
     type Empresa = Empresa[];
     return this.http.get<Empresa>(this.API)
       .pipe(
+        delay(2000),
           tap(console.log)
       );
   }
 
   create(form) {
     return this.http.post(this.API, form.value)
-        .pipe(
-          delay(3000),
+      .pipe(
+        delay(2000),
           tap(console.log)
-        )
+      )
+  }
+
+  delete(empresaId) {
+    return this.http.delete(this.API, empresaId)
+      .pipe(
+        tap(console.log)
+      )
+  }
+
+  update(empresa) {
+    return this.http.put(this.API, empresa)
+      .pipe(
+        tap(console.log)
+      )
   }
 }

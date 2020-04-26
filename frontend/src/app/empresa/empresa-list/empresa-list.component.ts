@@ -1,8 +1,10 @@
+import { NotificacaoService } from './../../shared/services/notificacao.service';
+import { SpinnerService } from './../../shared/services/spinner.service';
 import { EmpresaService } from './../empresa.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, empty } from 'rxjs';
 import { Empresa } from '../empresa';
-import { catchError } from 'rxjs/operators';
+import { catchError, map, tap, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-empresa-list',
@@ -12,13 +14,16 @@ import { catchError } from 'rxjs/operators';
 export class EmpresaListComponent implements OnInit {
 
   // json-server --watch db.json
-  whiteSpace: string = "";
   empresas$: Observable<Empresa[]>;
 
-  constructor(private service: EmpresaService) { }
+  constructor(
+    private service: EmpresaService,
+    private spinner: SpinnerService,
+    private notify: NotificacaoService
+    ) { }
 
-  ngOnInit(): void {
-    this.empresas$ = this.service.list()
+  onUpdate(empresa: Empresa) {
+    this.service.update(empresa)
     .pipe(
       catchError(error => {
         console.error(error);
@@ -26,5 +31,35 @@ export class EmpresaListComponent implements OnInit {
         return empty();
       })
     );
+  }
+
+  onDelete(empresaId: number) {
+    this.service.delete(empresaId)
+    .pipe(
+      catchError(error => {
+        console.error(error);
+        // this.handleError();
+        return empty();
+      })
+    );
+  }
+
+  ngOnInit() {
+    this.spinner.showSpinner();
+      this.empresas$ = this.service.list()
+        .pipe(
+          tap(() => {
+            take(1)
+            this.spinner.hideSpinner();
+            return;
+          }),
+          catchError(error => {
+            this.spinner.hideSpinner();
+            console.log(error)
+            this.notify.showError("Ocorreu um erro ao obter a lista de empresas.", error.statusText)
+            // this.handleError();
+            return empty();
+          })
+        );
   }
 }
