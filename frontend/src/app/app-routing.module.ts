@@ -4,16 +4,26 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-
+  { path: 'organograma',
+      loadChildren: () =>
+      import('./organograma/organograma.module')
+      .then(m => m.OrganogramaModule)
+       // canActivate: [AuthGuardOrganograma],
+      // canActivateChild: [OrganogramaGuard]
+  },
   { path: 'empresas',
-      loadChildren: () => import('./empresa/empresa.module').then(m => m.EmpresaModule)
+      loadChildren: () =>
+       import('./empresa/empresa.module')
+       .then(m => m.EmpresaModule)
       // canActivate: [AuthGuardEmpresa],
       // canActivateChild: [EmpresaGuard]
   },
   { path: 'funcionario',
-     loadChildren: () => import('./funcionario/funcionario.module').then(m => m.FuncionarioModule)
-     // canActivate: [AuthGuardFuncionario],
-     // canActivateChild: [FuncionarioGuard]
+      loadChildren: () =>
+       import('./funcionario/funcionario.module')
+       .then(m => m.FuncionarioModule)
+      // canActivate: [AuthGuardFuncionario],
+      // canActivateChild: [FuncionarioGuard]
   },
   { path: 'home', component: HomeComponent },
   {
