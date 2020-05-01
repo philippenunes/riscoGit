@@ -41,10 +41,15 @@ public class OrganogramaEndpoint {
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<Organograma> delete(@RequestBody Organograma organograma){
+	public ResponseEntity<String> iniciarDelete(@RequestBody Organograma organograma){
+		
+		return new ResponseEntity<String>(organograma.iniciarDelete(), HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value = "/deletar")
+	public ResponseEntity<Organograma> deletar(@RequestBody Organograma organograma){
 		
 		organograma.deletar();
-		
 		return new ResponseEntity<Organograma>(organograma, HttpStatus.OK);
 	}
 	

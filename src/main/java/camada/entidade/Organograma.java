@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import camada.dao.Dao;
 import lombok.Getter;
 import lombok.Setter;
@@ -80,14 +83,45 @@ public class Organograma extends Dao{
 		return listaOrganograma;
 	}
 
-	public void deletar() {
+	public String iniciarDelete() {
 		
 		iniciarOperacao();
-		Organograma organograma = (Organograma)session.load(Organograma.class, this.id);
-		session.delete(organograma);
+		
+		//validacao se tem relacionamento com id_pai
+		List<Organograma> listaOrganogramas = new ArrayList<Organograma>();
+		listaOrganogramas = session.createQuery("SELECT a FROM Organograma a where a.idPaiOrganograma ='"+ this.id+"'", Organograma.class).getResultList();
+		
+		if(listaOrganogramas.isEmpty()){
+			Organograma organograma = (Organograma)session.load(Organograma.class, this.id);
+			
+			if(!organograma.getFuncionarios().isEmpty()) {
+				
+				finalizarOperacao();
+				return "Existe funcionario associado.";
+			}
+			else{
+				session.delete(organograma);
+				finalizarOperacao();
+				return "Deletado.";
+			}
+		}
 		
 		finalizarOperacao();
 		
+		return "Existe filho associado.";
+	}
+	
+	public boolean deletar() {
+		
+		iniciarOperacao();
+		
+		Organograma organograma = (Organograma)session.load(Organograma.class, this.id);
+			
+		session.createSQLQuery("Delete tbFuncionarioOrganograma where id_nVarOrganograma ='"+ this.id+"'").executeUpdate();
+		session.delete(organograma);
+			
+		finalizarOperacao();
+		return true;
 	}
 
 	public void atualizar() {
