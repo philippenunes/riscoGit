@@ -8,6 +8,8 @@ import camada.entidade.Empresa;
 import camada.entidade.Funcionario;
 import camada.entidade.Organograma;
 
+import java.math.BigInteger;
+
 public class Dao {
 
 	protected static SessionFactory factory = new Configuration()
@@ -25,6 +27,15 @@ public class Dao {
 	protected  void finalizarOperacao() {
 		session.getTransaction().commit();
 		session.close();
+	}
+
+	protected Long getSequence(String descricao) {
+		BigInteger id = (BigInteger) session.
+				createSQLQuery("insert into tbSequencia (Valor) OUTPUT inserted.id_sequencia VALUES (:desc)")
+				.setParameter("desc", descricao)
+				.getResultList()
+				.get(0);
+		return id.longValue();
 	}
 
 }

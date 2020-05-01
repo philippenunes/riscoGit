@@ -1,0 +1,103 @@
+<br/><br/>
+<h2>ORGANOGRAMA EMPRESA</h2>
+<br/><br/>
+
+<form [formGroup]="formOrganograma" (ngSubmit)="onSubmit()">
+
+    <!-- Nó Pai-->
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="nome">Nó Principal</label>
+      <div class="col-sm-6">
+        <select class="form-control" formControlName="orgPai">
+          <option>Selecione...</option>
+          <option *ngFor="let item of noPrincipalLista" [value]="item">{{item}}</option>
+        </select>
+      </div>
+      <!-- <button type="button" class="btn-dark" data-toggle="modal" data-target="#modalNovoSetor">
+        Novo
+      </button> -->
+    </div>
+
+    <!-- Nó Filho-->
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="nome">Nome do Setor</label>
+      <div class="col-sm-6">
+        <input class="form-control" type="text" formControlName="nome" id="nome" placeholder="Setor">
+      </div>
+    </div>
+
+    <!-- Descrição -->
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="nome">Descrição</label>
+      <div class="col-sm-6">
+        <textarea class="form-control" type="text" formControlName="descricao" id="nome" placeholder="Informações sobre o setor"></textarea>
+      </div>
+    </div>
+
+    <!-- Centros de custo -->
+    <!-- <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="email">Centros de custo</label>
+        <div class="col-sm-6">
+          <select class="form-control" formControlName="centroDeCusto">
+            <option>Selecione...</option>
+            <option *ngFor="let item of centrosDeCusto" [value]="item">{{item}}</option>
+          </select>
+        </div>
+    </div> -->
+
+    <!-- Botão incluir funcionário -->
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button class="btn-dark">Incluir funcionários</button>
+      </div>
+    </div>
+
+    <!-- Botão Salvar -->
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn-primary">Salvar</button>
+      </div>
+    </div>
+  <!-- <app-form-debug [form]="formEmpresa"></app-form-debug> -->
+</form>
+
+
+<!-- Modal Novo Nó Principal -->
+<div class="modal fade" id="modalNovoSetor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cadastrar novo setor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input class="form-control" [(ngModel)]="novoSetorPai" type="text" id="novoSetorPai" placeholder="Informe o nome do setor">
+      </div>
+      <div class="modal-footer">
+        <button style="width: 80px;" (click)="incluirNoPrincipal()" data-dismiss="modal" aria-label="Close" class="btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Funcionários -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cadastrar novo setor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input class="form-control" [(ngModel)]="novoSetorPai" type="text" id="novoSetorPai" placeholder="Informe o nome do setor">
+      </div>
+      <div class="modal-footer">
+        <button style="width: 80px;" (click)="incluirNoPrincipal()" data-dismiss="modal" aria-label="Close" class="btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>

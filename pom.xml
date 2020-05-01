@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.br.chttt</groupId>
-  <artifactId>chttt</artifactId>
+  <groupId>com.br.risco</groupId>
+  <artifactId>Risco</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>chttt Maven Webapp</name>
+  <name>Risco Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -20,11 +20,11 @@
 		    <artifactId>spring-webmvc</artifactId>
 		    <version>5.0.5.RELEASE</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>com.microsoft.sqlserver</groupId>
-		    <artifactId>mssql-jdbc</artifactId>
-		    <version>7.4.1.jre11</version>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>8.3.0.jre8-preview</version>
 		</dependency>
 		
 		<dependency>
@@ -87,13 +87,6 @@
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.meujar</groupId>
-			<artifactId>meujar</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
   </dependencies>
 
 	<!-- Support for Maven WAR Plugin -->
