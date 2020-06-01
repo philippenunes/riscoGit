@@ -11,6 +11,13 @@ const routes: Routes = [
        // canActivate: [AuthGuardOrganograma],
       // canActivateChild: [OrganogramaGuard]
   },
+  { path: 'funcionarios',
+      loadChildren: () =>
+      import('./funcionario/funcionario.module')
+      .then(m => m.FuncionarioModule)
+       // canActivate: [AuthGuardOrganograma],
+      // canActivateChild: [OrganogramaGuard]
+  },
   { path: 'empresas',
       loadChildren: () =>
        import('./empresa/empresa.module')
