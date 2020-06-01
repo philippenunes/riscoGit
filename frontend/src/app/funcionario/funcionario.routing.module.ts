@@ -1,13 +1,14 @@
+import { FuncionarioFormComponent } from './funcionario-form/funcionario-form.component';
 import { FuncionarioComponent } from './funcionario.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule, Component } from '@angular/core';
 
 const funcionarioRoutes: Routes = [
-    { path: '', component: FuncionarioComponent
+    { path: '', component: FuncionarioComponent,
         // canActivateChild: [FuncionarioGuard],
-        // children: [
-        //     {path: 'novo', component: FuncionarioDetalheComponent}
-        // ]
+        children: [
+          {path: 'cadastro', component: FuncionarioFormComponent},
+        ]
     },
 ];
 
