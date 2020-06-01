@@ -7,6 +7,8 @@
     <tr *ngFor="let empresa of empresas">
       <td>{{ empresa.nome }}</td>
       <td>{{ empresa.descricao }}</td>
+      <td><button [routerLink]="[empresa.id]">+</button></td>
     </tr>
   </table>
 </div>
+

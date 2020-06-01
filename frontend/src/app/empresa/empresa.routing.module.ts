@@ -1,3 +1,5 @@
+import { EmpresaDetalheResolver } from './empresa-detail/empresa-detalhe.resolver';
+import { EmpresaDetailComponent } from './empresa-detail/empresa-detail.component';
 import { EmpresaListComponent } from './empresa-list/empresa-list.component';
 import { EmpresaFormComponent } from './empresa-form/empresa-form.component';
 import { EmpresaComponent } from './empresa.component';
@@ -9,7 +11,10 @@ const empresaRoutes: Routes = [
         // canActivateChild: [EmpresaGuard],
         children: [
             {path: 'cadastro', component: EmpresaFormComponent},
-            {path: 'lista', component: EmpresaListComponent}
+            {path: 'lista', component: EmpresaListComponent},
+            {path: 'lista/:id', component: EmpresaDetailComponent,
+                resolve: { empresa : EmpresaDetalheResolver }
+            }
         ]
     },
 ];
