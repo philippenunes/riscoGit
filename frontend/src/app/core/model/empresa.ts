@@ -1,4 +1,4 @@
-import { Organograma } from './../organograma/organograma';
+import { Organograma } from './organograma';
 export interface Empresa {
   id: number,
   nome: String,

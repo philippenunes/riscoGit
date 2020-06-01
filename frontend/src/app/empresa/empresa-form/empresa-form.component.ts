@@ -1,3 +1,4 @@
+
 import { SpinnerService } from './../../shared/services/spinner.service';
 import { EmpresaService } from './../empresa.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
@@ -18,7 +19,8 @@ export class EmpresaFormComponent implements OnInit {
     private service: EmpresaService,
     private toastr: NotificacaoService,
     private formBuilder: FormBuilder,
-    private spinner: SpinnerService
+    private spinner: SpinnerService,
+    private notify: NotificacaoService
     ) { }
 
   onSubmit() {
@@ -27,12 +29,12 @@ export class EmpresaFormComponent implements OnInit {
       .subscribe(
         success => {
           let message = `Empresa ${success.nome} cadastrada com sucesso!`;
-          this.toastr.showSuccess(message, "Sucesso");
+          this.notify.showSuccess(message, "Sucesso!");
           console.log(success)
           this.spinner.hideSpinner();
         },
         error => {
-          this.toastr.showError("Algo deu errado ao cadastrar a empresa!", "Erro!");
+          this.notify.showError(error.statusText, "Erro!");
           console.log(error)
           this.spinner.hideSpinner();
         }

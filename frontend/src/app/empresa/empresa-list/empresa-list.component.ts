@@ -3,8 +3,9 @@ import { SpinnerService } from './../../shared/services/spinner.service';
 import { EmpresaService } from './../empresa.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, empty } from 'rxjs';
-import { Empresa } from '../empresa';
+import { Empresa } from '../../core/model/empresa';
 import { catchError, map, tap, take } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-empresa-list',
@@ -45,19 +46,15 @@ export class EmpresaListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.spinner.showSpinner();
       this.empresas$ = this.service.list()
         .pipe(
           tap(() => {
             take(1)
-            this.spinner.hideSpinner();
             return;
           }),
           catchError(error => {
-            this.spinner.hideSpinner();
             console.log(error)
             this.notify.showError("Ocorreu um erro ao obter a lista de empresas.", error.statusText)
-            // this.handleError();
             return empty();
           })
         );
